@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Running Square</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="myCanvas" width="600" height="400"></canvas>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const canvas = document.getElementById("myCanvas");
+            const ctx = canvas.getContext("2d");
+
+            // Initial position of the square
+            let x = 0;
+            const y = canvas.height / 2;
+            const size = 50;
+
+            // Animation loop
+            function animate() {
+                // Clear canvas
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                // Draw the square
+                ctx.fillStyle = "blue";
+                ctx.fillRect(x, y - size / 2, size, size);
+
+                // Update the position
+                x += 2; // Move 2 pixels to the right in each frame
+
+                // Reset position when square goes off the screen
+                if (x > canvas.width) {
+                    x = -size;
+                }
+
+                // Request the next animation frame
+                requestAnimationFrame(animate);
+            }
+
+            // Start the animation
+            animate();
+        });
+    </script>
+</body>
+</html>
